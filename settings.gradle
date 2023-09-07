@@ -1,0 +1,1 @@
+include ':associado', ':boleto', ':arquivo'
