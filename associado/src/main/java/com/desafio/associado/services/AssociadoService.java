@@ -10,6 +10,6 @@ public interface AssociadoService {
     AssociadoResponse buscarAssociado(String documento);
     AssociadoResponse buscarAssociadoPorId(UUID uuid);
     AssociadoResponse atualizarAssociado(UUID uuid, AssociadoRequest associadoRequest);
-    void deletarAssociado(UUID documento);
+    void deletarAssociado(UUID uuid);
 
 }

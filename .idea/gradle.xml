@@ -3,7 +3,19 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/arquivo" />
+            <option value="$PROJECT_DIR$/associado" />
+            <option value="$PROJECT_DIR$/boleto" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
         <option name="externalProjectPath" value="$PROJECT_DIR$/arquivo" />
+        <option name="gradleJvm" value="17" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/arquivo" />

@@ -2,5 +2,5 @@ projectKey=desafio
 serverUrl=http://localhost:9000
 serverVersion=8.3.1.34397
 dashboardUrl=http://localhost:9000/dashboard?id=desafio
-ceTaskId=AYpv9qaK05TijGpmFaCr
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AYpv9qaK05TijGpmFaCr
+ceTaskId=AYp0U2lIj9IKjriDJZBM
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYp0U2lIj9IKjriDJZBM

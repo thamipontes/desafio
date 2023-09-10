@@ -1,4 +1,4 @@
-package com.desafio.boleto;
+package com.desafio.boleto.controllers;
 
 import com.desafio.boleto.controllers.BoletoController;
 import com.desafio.boleto.dtos.BoletoRequest;

@@ -1,0 +1,10 @@
+{
+  "id": "052a0588-7fa3-4324-8877-734c1b187564",
+  "valor": 230.04,
+  "uuidAssociado": "6c916bd0-a318-411c-ba9f-16e463d7a2b3",
+  "vencimento": "08-09-2023",
+  "documentoPagador": "91468816039",
+  "nomePagador": "Teste Boleto",
+  "nomeFantasiaPagador": null,
+  "situacaoBoleto": "PAGO"
+}

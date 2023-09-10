@@ -13,6 +13,7 @@ import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import java.util.UUID;
 
@@ -100,7 +101,7 @@ public class AssociadoServiceImpl implements AssociadoService {
 
         }catch (Exception ex) {
             log.error("Erro ao deletar associado com uuid {}", uuid);
-            throw new RuntimeException("Erro ao deletar associado", ex);
+            throw ex;
         }
     }
 }

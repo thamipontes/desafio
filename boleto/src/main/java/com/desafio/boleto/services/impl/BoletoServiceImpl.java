@@ -42,7 +42,7 @@ public class BoletoServiceImpl implements BoletoService {
             return modelMapper.map(boletoSalvo, BoletoResponse.class);
         } catch (Exception ex) {
             log.error("Erro ao salvar boleto {}", boletoRequest);
-            throw new RuntimeException("Erro ao salvar associado", ex);
+            throw ex;
         }
     }
 

@@ -36,7 +36,7 @@ public class AssociadoController {
             @ApiResponse(responseCode = "500", description = "A exceção foi gerada."),
     })
     @PostMapping
-    public ResponseEntity<AssociadoResponse> createSchedule(@RequestBody AssociadoRequest associadoRequest){
+    public ResponseEntity<AssociadoResponse> criarAssociado(@RequestBody AssociadoRequest associadoRequest){
         AssociadoResponse response = associadoService.criarAssociado(associadoRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
@@ -60,7 +60,7 @@ public class AssociadoController {
             @ApiResponse(responseCode = "500", description = "A exceção foi gerada."),
     })
     @GetMapping("{uuid}")
-    public ResponseEntity<AssociadoResponse> buscarAssociadoPorId(@PathVariable String uuid){
+    public ResponseEntity<AssociadoResponse> buscarAssociaoPorId(@PathVariable String uuid){
         UUID uuidConvert = UUID.fromString(uuid);
         AssociadoResponse response = associadoService.buscarAssociadoPorId(uuidConvert);
         return ResponseEntity.ok(response);
@@ -90,7 +90,7 @@ public class AssociadoController {
     public ResponseEntity<?> deletarAssociado(@PathVariable String uuid){
         UUID uuidConvert = UUID.fromString(uuid);
         associadoService.deletarAssociado(uuidConvert);
-        return ResponseEntity.status(HttpStatus.OK).build();
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
 }

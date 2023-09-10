@@ -9,4 +9,10 @@ public class ConverteData {
         LocalDate dataFormatada = LocalDate.parse(data, formatter);
         return dataFormatada;
     }
+
+    public static String converterDataAtual(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate dataFormatada = LocalDate.now();
+        return dataFormatada.format(formatter);
+    }
 }

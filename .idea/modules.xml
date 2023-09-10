@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/desafio.iml" filepath="$PROJECT_DIR$/.idea/desafio.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/arquivo.main.iml" filepath="$PROJECT_DIR$/.idea/modules/arquivo.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/associado.main.iml" filepath="$PROJECT_DIR$/.idea/modules/associado.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/boleto.main.iml" filepath="$PROJECT_DIR$/.idea/modules/boleto.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/arquivo/desafio.arquivo.main.iml" filepath="$PROJECT_DIR$/.idea/modules/arquivo/desafio.arquivo.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/associado/desafio.associado.main.iml" filepath="$PROJECT_DIR$/.idea/modules/associado/desafio.associado.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/boleto/desafio.boleto.main.iml" filepath="$PROJECT_DIR$/.idea/modules/boleto/desafio.boleto.main.iml" />
     </modules>
   </component>
 </project>
