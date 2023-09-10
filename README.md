@@ -87,7 +87,7 @@ Com o Rabbitmq você poderá ver as mensagens que estão sendo enviadas para as 
 # Associado
 Para testar o microsserviço de associado, basta acessar o link abaixo:
 - http://localhost:8081/swagger-ui/index.html
-- Clique no endpoint /associado/v1/associados
+- Clique no endpoint /associados
 - Clique no botão Try it out
 - Preencha os dados e clique em Execute
 - Após isso você verá o resultado da requisição
@@ -107,7 +107,7 @@ Observações do associado:
 # Boleto
 Para testar o microsserviço de boleto, basta acessar o link abaixo:
 - http://localhost:8082/swagger-ui/index.html
-- Clique no endpoint /boleto/v1/boletos
+- Clique no endpoint /boletos
 - Clique no botão Try it out
 - Preencha os dados e clique em Execute
 - Após isso você verá o resultado da requisição
