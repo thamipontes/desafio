@@ -13,7 +13,6 @@ import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import java.util.UUID;
 
@@ -42,7 +41,7 @@ public class AssociadoServiceImpl implements AssociadoService {
             return modelMapper.map(associadoSalvo, AssociadoResponse.class);
         } catch (Exception ex) {
             log.error("Erro ao salvar associado {}", associadoRequest);
-            throw new RuntimeException("Erro ao salvar associado", ex);
+            throw ex;
         }
     }
 
@@ -77,7 +76,7 @@ public class AssociadoServiceImpl implements AssociadoService {
             return modelMapper.map(associadoSalvo, AssociadoResponse.class);
         } catch (Exception ex) {
             log.error("Erro ao atualizar associado {}", associadoRequest);
-            throw new RuntimeException("Erro ao atualizar associado", ex);
+            throw ex;
         }
     }
 

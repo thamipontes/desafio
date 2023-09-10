@@ -1,6 +1,7 @@
 package com.desafio.associado.exceptions;
 
 
+import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -19,7 +20,7 @@ public class CustomExceptionHandler {
     public ResponseEntity<ApiExceptionCustom> handleValidationException(ConstraintViolationException ex) {
         ApiExceptionCustom apiExceptionCustom = new ApiExceptionCustom(ex.getConstraintViolations()
                 .stream()
-                .map(violation -> violation.getMessage())
+                .map(ConstraintViolation::getMessage)
                 .collect(Collectors.joining(", ")));
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(apiExceptionCustom);
     }

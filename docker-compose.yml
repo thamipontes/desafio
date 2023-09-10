@@ -16,6 +16,18 @@ services:
       - sonarqube_data:/opt/sonarqube/data
       - sonarqube_extensions:/opt/sonarqube/extensions
 
+  spring_boot_associado:
+    build:
+      context: ./associado
+      dockerfile: DockerfileAssociado
+    restart: always
+    ports:
+      - "8081:8081"
+    depends_on:
+      - postgres_db_associado
+    links:
+      - postgres_db_associado:postgres_db_associado
+
   postgres_db_associado:
     container_name: postgres_db_associado
     image: postgres
@@ -34,24 +46,63 @@ services:
     volumes:
       - postgres1_data:/var/lib/postgresql/data
 
+  rabbitmq:
+    platform: linux/amd64
+    image: rabbitmq:3.8.3-management
+    hostname: rabbitmq
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    environment:
+      RABBITMQ_DEFAULT_USER: root
+      RABBITMQ_DEFAULT_PASS: rabbitmq
+      DOCKER_DEFAULT_PLATFORM: linux/amd64
+    networks:
+      - rabbitmq-compose-network
 
   postgres_db_boleto:
     container_name: postgres_db_boleto
     image: postgres
     restart: always
     ports:
-      - "127.0.0.1:5434:5432"
+      - "5434:5432"
     environment:
       - PGUSER="postgres"
       - POSTGRES_DB=boleto
       - POSTGRES_PASSWORD=root
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U postgres"]
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
       interval: 5s
       timeout: 5s
       retries: 5
     volumes:
       - postgres2_data:/var/lib/postgresql/data
+
+  spring_boot_boleto:
+    build:
+      context: ./boleto
+      dockerfile: DockerfileBoleto
+    restart: always
+    ports:
+      - "8082:8082"
+    depends_on:
+      - postgres_db_boleto
+      - rabbitmq
+    links:
+      - postgres_db_boleto:postgres_db_boleto
+      - rabbitmq:rabbitmq
+
+  spring_boot_arquivo:
+    build:
+      context: ./arquivo
+      dockerfile: DockerfileArquivo
+    restart: always
+    ports:
+      - "8083:8083"
+    depends_on:
+      - rabbitmq
+    links:
+      - rabbitmq:rabbitmq
 
   pgadmin:
     image: dpage/pgadmin4
@@ -69,19 +120,6 @@ services:
     networks:
       - postgres-compose-network
 
-  rabbitmq:
-    platform: linux/amd64
-    image: rabbitmq:3.8.3-management
-    hostname: rabbitmq
-    ports:
-      - "15672:15672"
-      - "5672:5672"
-    environment:
-      RABBITMQ_DEFAULT_USER: root
-      RABBITMQ_DEFAULT_PASS: rabbitmq
-      DOCKER_DEFAULT_PLATFORM: linux/amd64
-    networks:
-      - rabbitmq-compose-network
 
 networks:
   sonarnet:

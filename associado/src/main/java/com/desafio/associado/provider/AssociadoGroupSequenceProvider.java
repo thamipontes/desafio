@@ -14,9 +14,7 @@ public class AssociadoGroupSequenceProvider implements DefaultGroupSequenceProvi
         grupos.add(Associado.class);
 
         if (associado != null) {
-            if (associado.getTipoPessoa() != null) {
-                grupos.add(associado.getTipoPessoa().getGrupo());
-            }
+            grupos.add(associado.getTipoPessoa().getGrupo());
         }
 
         return grupos;

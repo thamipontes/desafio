@@ -1,22 +1,29 @@
 package com.desafio.arquivo.listener;
 
 import com.desafio.arquivo.dtos.BoletoResponse;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 @Component
+@Log4j2
 public class ArquivoListener {
     @RabbitListener(queues = "boletos.v1.boleto-pago")
-    public void emBoletoCriado(BoletoResponse boletoResponse) {
+    public void onBoletoPago(BoletoResponse boletoResponse) throws IOException {
         gerarArquivo(boletoResponse);
     }
 
-    public void gerarArquivo(BoletoResponse boletoResponse) {
-        String nomeArquivo = "arquivo/arquivosgerados/" + boletoResponse.getId() + ".txt";
+    public void gerarArquivo(BoletoResponse boletoResponse) throws IOException {
+        String nomeArquivo = "arquivos/arquivosgerados/" + boletoResponse.getId() + ".txt";
+
+        Path diretorio = Path.of("arquivos/arquivosgerados/");
+        Files.createDirectories(diretorio);
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(nomeArquivo))) {
             String documentoPagador = String.format("%014d", Long.parseLong(boletoResponse.getDocumentoPagador()));
@@ -24,9 +31,9 @@ public class ArquivoListener {
             String linha = documentoPagador + boletoResponse.getId() + valorPago;
             writer.write(linha);
             writer.newLine();
-            System.out.println("Arquivo gerado com sucesso!");
+            log.info("Arquivo gerado com sucesso!");
         } catch (IOException e) {
-            System.err.println("Erro ao gerar o arquivo: " + e.getMessage());
+            log.error("Erro ao gerar o arquivo: " + e.getMessage());
         }
     }
 }
