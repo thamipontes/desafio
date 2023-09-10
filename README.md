@@ -25,7 +25,6 @@ docker-compose up -d
 Após isso, as aplicações estarão disponíveis
 - Associado Swagger : http://localhost:8081/swagger-ui/index.html
 - Boleto Swagger : http://localhost:8082/swagger-ui/index.html
-- Arquivo Swagger : http://localhost:8083/swagger-ui/index.html
 - Pgadmin : http://localhost:5050/
 - Sonarqube : http://localhost:9000/
 - Rabbitmq : http://localhost:15672/

@@ -39,10 +39,13 @@ public class AssociadoControllerIntegracaoTest {
 
     private MockWebServer mockWebServer;
 
+    public static String baseUrl;
+
     @BeforeEach
     public void setUp() throws IOException {
         mockWebServer = new MockWebServer();
         mockWebServer.start(8082);
+        baseUrl = mockWebServer.url("/").toString();
     }
 
     @AfterEach
@@ -57,7 +60,7 @@ public class AssociadoControllerIntegracaoTest {
         String json = objectMapper.writeValueAsString(getAssociadoRequest());
 
         ResultActions result = mockMvc.perform(MockMvcRequestBuilders
-                .post("/associados")
+                .post(baseUrl + "/associados")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json));
 
@@ -81,7 +84,7 @@ public class AssociadoControllerIntegracaoTest {
                 .content(json));
 
         ResultActions result = mockMvc.perform(MockMvcRequestBuilders
-                .get("/associados")
+                .get(baseUrl + "/associados")
                 .param("documento", "81775744000")
                 .contentType(MediaType.APPLICATION_JSON));
 
@@ -100,7 +103,7 @@ public class AssociadoControllerIntegracaoTest {
         String json = objectMapper.writeValueAsString(getAssociadoRequest());
 
         ResultActions resultPost = mockMvc.perform(MockMvcRequestBuilders
-                .post("/associados")
+                .post(baseUrl + "/associados")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json));
 
@@ -108,7 +111,7 @@ public class AssociadoControllerIntegracaoTest {
         String id = objectMapper.readTree(associadoResponseJson).get("id").asText();
 
         ResultActions result = mockMvc.perform(MockMvcRequestBuilders
-                .get("/associados/" + id)
+                .get(baseUrl + "/associados/" + id)
                 .contentType(MediaType.APPLICATION_JSON));
 
         result.andExpect(MockMvcResultMatchers.status().isOk())
@@ -126,7 +129,7 @@ public class AssociadoControllerIntegracaoTest {
         String json = objectMapper.writeValueAsString(getAssociadoRequest());
 
         ResultActions resultPost = mockMvc.perform(MockMvcRequestBuilders
-                .post("/associados")
+                .post(baseUrl + "/associados")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json));
 
@@ -136,7 +139,7 @@ public class AssociadoControllerIntegracaoTest {
         String jsonPut = objectMapper.writeValueAsString(getAssociadoRequestPut());
 
         ResultActions result = mockMvc.perform(MockMvcRequestBuilders
-                .patch("/associados/" + id)
+                .patch(baseUrl+ "/associados/" + id)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonPut));
 
@@ -162,7 +165,7 @@ public class AssociadoControllerIntegracaoTest {
         String json = objectMapper.writeValueAsString(getAssociadoRequest());
 
         ResultActions resultPost = mockMvc.perform(MockMvcRequestBuilders
-                .post("/associados")
+                .post(baseUrl + "/associados")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json));
 
@@ -170,7 +173,7 @@ public class AssociadoControllerIntegracaoTest {
         String id = objectMapper.readTree(associadoResponseJson).get("id").asText();
 
         ResultActions result = mockMvc.perform(MockMvcRequestBuilders
-                .delete("/associados/" + id)
+                .delete(baseUrl + "/associados/" + id)
                 .contentType(MediaType.APPLICATION_JSON));
 
         result.andExpect(MockMvcResultMatchers.status().isNoContent());
