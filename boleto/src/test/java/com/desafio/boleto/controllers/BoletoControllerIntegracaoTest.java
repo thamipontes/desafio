@@ -142,7 +142,7 @@ class BoletoControllerIntegracaoTest {
                 boletoResponse.getValor(), boletoResponse.getDocumentoPagador()));
 
         ResultActions result = mockMvc.perform(MockMvcRequestBuilders
-                .get("/boletos/pagamento")
+                .post("/boletos/pagamento")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonPagamento));
 

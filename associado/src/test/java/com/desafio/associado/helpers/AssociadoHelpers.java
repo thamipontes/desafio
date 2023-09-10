@@ -36,11 +36,11 @@ public class AssociadoHelpers {
 
 
     public static AssociadoRequest getAssociadoRequestErrorCpf() {
-        return new AssociadoRequest("81775744003", ETipoPessoa.PF, "João da Silva");
+        return new AssociadoRequest(null,  ETipoPessoa.PJ, "João da Silva");
     }
 
     public static AssociadoRequest getAssociadoRequestErrorCnpj() {
-        return new AssociadoRequest("95730385000153", ETipoPessoa.PF, "João da Silva");
+        return new AssociadoRequest("9573038500053", ETipoPessoa.PF, "João da Silva");
     }
 
     public static Associado getAssociado() {

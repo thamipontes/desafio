@@ -8,6 +8,8 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.AllArgsConstructor;
+import org.springframework.amqp.core.Message;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -28,6 +30,10 @@ public class BoletoController {
 
     @Autowired
     private final BoletoService boletoService;
+
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
+
     @Operation(summary = "Criação de um boleto")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Sucesso."),
@@ -58,9 +64,10 @@ public class BoletoController {
             @ApiResponse(responseCode = "403", description = "Você não tem permissão para acessar esse recurso."),
             @ApiResponse(responseCode = "500", description = "A exceção foi gerada."),
     })
-    @GetMapping("pagamento")
+    @PostMapping("pagamento")
     public ResponseEntity<BoletoResponse> pagarBoleto(@RequestBody PagamentoBoletoRequest pagamentoBoletoRequest){
         BoletoResponse response = boletoService.pagarBoleto(pagamentoBoletoRequest);
+        rabbitTemplate.convertAndSend("boletos.v1.boleto-pago", response);
         return ResponseEntity.ok(response);
     }
 

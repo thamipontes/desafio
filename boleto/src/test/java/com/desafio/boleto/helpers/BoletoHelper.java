@@ -86,7 +86,7 @@ public class BoletoHelper {
     }
 
     public static Boleto getBoleto(){
-        return new Boleto(UUID.fromString("052a0588-7fa3-4324-8877-734c1b187564"),
+        return new Boleto("052a0588-7fa3-4324-8877-734c1b187564",
                 1000.0f, UUID.fromString("052a0588-7fa3-4324-8877-734c1b187564"),
                 converterDataAtual(),
                 "91468816039",
@@ -96,7 +96,7 @@ public class BoletoHelper {
     }
 
     public static Boleto getBoletoPago(){
-        return new Boleto(UUID.fromString("052a0588-7fa3-4324-8877-734c1b187564"),
+        return new Boleto("052a0588-7fa3-4324-8877-734c1b187564",
                 1000.0f, UUID.fromString("052a0588-7fa3-4324-8877-734c1b187564"),
                 converterDataAtual(),
                 "91468816039",

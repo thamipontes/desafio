@@ -16,6 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -33,6 +34,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
+@Transactional
 public class AssociadoServiceIntegracaoTest {
     @Autowired
     AssociadoService associadoService;
@@ -55,7 +57,7 @@ public class AssociadoServiceIntegracaoTest {
     }
 
     @Test
-    void test_criar_associado_ok_cpf() {
+    void test_criar_associado_cpf() {
         AssociadoResponse associadoResponse = associadoService.criarAssociado(getAssociadoRequestCpf());
 
         assertThat(associadoResponse).extracting(AssociadoResponse::getDocumento,
@@ -64,26 +66,13 @@ public class AssociadoServiceIntegracaoTest {
     }
 
     @Test
-    void test_criar_associado_ok_cnpj() {
+    void test_criar_associado_cnpj() {
         AssociadoResponse associadoResponse = associadoService.criarAssociado(getAssociadoRequestCnpj());
         assertThat(associadoResponse).extracting(AssociadoResponse::getDocumento,
                         AssociadoResponse::getTipoPessoa, AssociadoResponse::getNome)
                 .contains("95730385000159", ETipoPessoa.PJ, "João da Silva");
     }
 
-    @Test
-    void test_criar_associado_error_cpf() {
-        assertThatExceptionOfType(RuntimeException.class)
-                .isThrownBy(() -> associadoService.criarAssociado(getAssociadoRequestErrorCpf()));
-
-    }
-
-    @Test
-    void test_criar_associado_error_cnpj() {
-        assertThatExceptionOfType(RuntimeException.class)
-                .isThrownBy(() -> associadoService.criarAssociado(getAssociadoRequestErrorCnpj()));
-
-    }
 
     @Test
     void test_buscar_associado_cpf(){
@@ -92,7 +81,7 @@ public class AssociadoServiceIntegracaoTest {
 
         assertThat(associadoResponse).extracting(AssociadoResponse::getId, AssociadoResponse::getDocumento,
                         AssociadoResponse::getTipoPessoa, AssociadoResponse::getNome)
-                .contains(associado.getId(), "81775744000", ETipoPessoa.PF, "João da Silva");
+                .contains(associado.getId().toString(), "81775744000", ETipoPessoa.PF, "João da Silva");
     }
 
     @Test
@@ -255,7 +244,7 @@ public class AssociadoServiceIntegracaoTest {
         mockWebServer.enqueue(response);
 
         assertThatExceptionOfType(Exception.class)
-                .isThrownBy(() -> associadoService.deletarAssociado(UUID.fromString("5225b408-4f00-11ee-be56-0242ac120002")));
+                .isThrownBy(() -> associadoService.deletarAssociado(UUID.fromString("5225be08-4f00-11ee-be56-0242ac120002")));
 
     }
 

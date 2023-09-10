@@ -5,6 +5,7 @@ import com.desafio.boleto.dtos.BoletoRequest;
 import com.desafio.boleto.services.BoletoService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
@@ -33,6 +34,9 @@ public class BoletoControllerTest {
 
     @MockBean
     private BoletoService boletoService;
+
+    @MockBean
+    private RabbitTemplate rabbitTemplate;
 
     @Test
     void test_buscar_boleto_pelo_uuid_associado() {

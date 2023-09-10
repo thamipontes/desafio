@@ -1,10 +1,9 @@
-package com.desafio.boleto.dtos;
+package com.desafio.arquivo.dtos;
 
-import com.desafio.boleto.enuns.ESituacaoBoleto;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.deser.std.StringDeserializer;
-import com.fasterxml.jackson.databind.ser.std.StringSerializer;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,6 +16,7 @@ import java.io.Serializable;
 @Setter
 @Getter
 public class BoletoResponse implements Serializable {
+
     private String id;
     private Float valor;
     private String uuidAssociado;
@@ -24,5 +24,5 @@ public class BoletoResponse implements Serializable {
     private String documentoPagador;
     private String nomePagador;
     private String nomeFantasiaPagador;
-    private ESituacaoBoleto situacaoBoleto;
+    private String situacaoBoleto;
 }

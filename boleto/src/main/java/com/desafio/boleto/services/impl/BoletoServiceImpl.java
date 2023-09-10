@@ -58,7 +58,7 @@ public class BoletoServiceImpl implements BoletoService {
     @Override
     public BoletoResponse pagarBoleto(PagamentoBoletoRequest pagamentoBoletoRequest) {
         log.info("Início: Buscar boleto {}", pagamentoBoletoRequest);
-        Boleto boleto = boletoRepository.findByPagamentoBoleto(UUID.fromString(pagamentoBoletoRequest.getId()),
+        Boleto boleto = boletoRepository.findByPagamentoBoleto(pagamentoBoletoRequest.getId(),
                 pagamentoBoletoRequest.getValor(), pagamentoBoletoRequest.getDocumentoPagador())
                 .orElseThrow(() -> new ApiRequestNotFound("Não foi possível achar boleto."));
         log.info("Fim: Buscar boleto pelo {}", pagamentoBoletoRequest);
