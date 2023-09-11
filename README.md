@@ -30,6 +30,7 @@ Após isso, as aplicações estarão disponíveis
 - Rabbitmq : http://localhost:15672/
 
 Obsevação: As aplicações podem demorar um pouco a subir, pois o docker precisa baixar as imagens e subir os containers.
+E para o bom funcionamento das aplicações é necessário que todos estejam rodando.
 
 ## Como acessar as aplicações
 
