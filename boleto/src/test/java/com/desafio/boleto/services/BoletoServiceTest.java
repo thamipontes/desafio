@@ -2,6 +2,7 @@ package com.desafio.boleto.services;
 
 import com.desafio.boleto.client.associado.service.AssociadoService;
 import com.desafio.boleto.dtos.BoletoRequest;
+import com.desafio.boleto.exceptions.ApiRequestBadRequest;
 import com.desafio.boleto.exceptions.ApiRequestNotFound;
 import com.desafio.boleto.models.Boleto;
 import com.desafio.boleto.repositories.BoletoRepository;
@@ -20,10 +21,13 @@ import java.util.UUID;
 
 import static com.desafio.boleto.helpers.BoletoHelper.getAssociado;
 import static com.desafio.boleto.helpers.BoletoHelper.getBoleto;
+import static com.desafio.boleto.helpers.BoletoHelper.getBoletoPago;
 import static com.desafio.boleto.helpers.BoletoHelper.getBoletoRequest;
+import static com.desafio.boleto.helpers.BoletoHelper.getBoletoRequestVencimentoInvalido;
 import static com.desafio.boleto.helpers.BoletoHelper.getBoletoResponse;
 import static com.desafio.boleto.helpers.BoletoHelper.getBoletoResponsePago;
 import static com.desafio.boleto.helpers.BoletoHelper.getPagamentoRequest;
+import static com.desafio.boleto.helpers.BoletoHelper.getPagamentoRequestValorInvalido;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -73,6 +77,15 @@ public class BoletoServiceTest {
                     boletoService.criarBoleto(getBoletoRequest());
                 }
         );
+    }
+
+    @Test
+    void test_criar_boleto_error_vencimento_invalido() {
+        when(associadoService.buscarAssociado("12345678910"))
+                .thenReturn(getAssociado());
+
+        assertThatExceptionOfType(ApiRequestBadRequest.class)
+                .isThrownBy(() -> boletoService.criarBoleto(getBoletoRequestVencimentoInvalido()));
     }
 
     @Test
@@ -126,5 +139,23 @@ public class BoletoServiceTest {
 
         assertThatExceptionOfType(ApiRequestNotFound.class)
                 .isThrownBy(() -> boletoService.pagarBoleto(getPagamentoRequest()));
+    }
+
+    @Test
+    void test_pagar_boleto_error_situacao_paga(){
+        when(boletoRepository.findByPagamentoBoleto(any(), anyFloat(), anyString()))
+                .thenReturn(Optional.of(getBoletoPago()));
+
+        assertThatExceptionOfType(ApiRequestBadRequest.class)
+                .isThrownBy(() -> boletoService.pagarBoleto(getPagamentoRequest()));
+    }
+
+    @Test
+    void test_pagar_boleto_error_valor_invalido(){
+        when(boletoRepository.findByPagamentoBoleto(any(), anyFloat(), anyString()))
+                .thenReturn(Optional.of(getBoleto()));
+
+        assertThatExceptionOfType(ApiRequestBadRequest.class)
+                .isThrownBy(() -> boletoService.pagarBoleto(getPagamentoRequestValorInvalido()));
     }
 }

@@ -36,7 +36,6 @@ jacocoTestReport {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-amqp'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compileOnly 'org.projectlombok:lombok'
@@ -44,10 +43,9 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.springframework.amqp:spring-rabbit-test'
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0'
 	implementation 'org.modelmapper:modelmapper:2.1.1'
-	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:4.0.4'
+	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:4.0.0'
 	testImplementation 'com.squareup.okhttp3:mockwebserver:4.11.0'
 	implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.2'
 	testImplementation 'io.rest-assured:spring-mock-mvc:3.0.0'

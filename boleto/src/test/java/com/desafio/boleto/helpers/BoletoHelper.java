@@ -64,6 +64,12 @@ public class BoletoHelper {
         return boletoRequest;
     }
 
+    public static BoletoRequest getBoletoRequestVencimentoInvalido() {
+        BoletoRequest boletoRequest = new BoletoRequest();
+        boletoRequest.setVencimento("12-12-2012");
+        return boletoRequest;
+    }
+
     public static BoletoRequest getBoletoRequestError() {
         BoletoRequest boletoRequest = new BoletoRequest();
         boletoRequest.setDocumentoPagador("123456789");
@@ -73,6 +79,12 @@ public class BoletoHelper {
     public static PagamentoBoletoRequest getPagamentoRequest() {
         return new PagamentoBoletoRequest("052a0588-7fa3-4324-8877-734c1b187564",
                 1000.0f,
+                "91468816039");
+    }
+
+    public static PagamentoBoletoRequest getPagamentoRequestValorInvalido() {
+        return new PagamentoBoletoRequest("052a0588-7fa3-4324-8877-734c1b187564",
+                100.0f,
                 "91468816039");
     }
 
