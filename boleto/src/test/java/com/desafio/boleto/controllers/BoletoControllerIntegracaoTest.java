@@ -11,8 +11,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -29,11 +27,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import static com.desafio.boleto.helpers.BoletoHelper.getBoletoRequest;
-import static com.desafio.boleto.helpers.BoletoHelper.getBoletoResponseJson;
-import static com.desafio.boleto.helpers.BoletoHelper.getBoletoResponseJsonPago;
-import static com.desafio.boleto.helpers.BoletoHelper.getPagamentoRequest;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
+
 
 
 @SpringBootTest

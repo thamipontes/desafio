@@ -1,12 +1,10 @@
 package com.desafio.boleto.services;
 
 import com.desafio.boleto.client.associado.service.AssociadoService;
-import com.desafio.boleto.dtos.BoletoRequest;
 import com.desafio.boleto.exceptions.ApiRequestBadRequest;
 import com.desafio.boleto.exceptions.ApiRequestNotFound;
 import com.desafio.boleto.models.Boleto;
 import com.desafio.boleto.repositories.BoletoRepository;
-import com.desafio.boleto.services.BoletoService;
 import com.desafio.boleto.services.impl.BoletoServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

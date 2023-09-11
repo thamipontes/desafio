@@ -26,8 +26,6 @@ import static com.desafio.associado.helpers.AssociadoHelpers.getAssociadoCnpj;
 import static com.desafio.associado.helpers.AssociadoHelpers.getAssociadoCpf;
 import static com.desafio.associado.helpers.AssociadoHelpers.getAssociadoRequestCnpj;
 import static com.desafio.associado.helpers.AssociadoHelpers.getAssociadoRequestCpf;
-import static com.desafio.associado.helpers.AssociadoHelpers.getAssociadoRequestErrorCnpj;
-import static com.desafio.associado.helpers.AssociadoHelpers.getAssociadoRequestErrorCpf;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertEquals;

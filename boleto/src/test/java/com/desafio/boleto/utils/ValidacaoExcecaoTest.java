@@ -1,6 +1,5 @@
 package com.desafio.boleto.utils;
 
-import com.desafio.boleto.controllers.BoletoController;
 import com.desafio.boleto.exceptions.ApiRequestBadRequest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

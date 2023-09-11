@@ -3,29 +3,20 @@ package com.desafio.boleto.services;
 import com.desafio.boleto.dtos.BoletoResponse;
 import com.desafio.boleto.dtos.PagamentoBoletoRequest;
 import com.desafio.boleto.enuns.ESituacaoBoleto;
-import com.desafio.boleto.exceptions.ApiRequestIntegrationException;
 import com.desafio.boleto.exceptions.ApiRequestNotFound;
 import com.desafio.boleto.models.Boleto;
 import com.desafio.boleto.repositories.BoletoRepository;
-import net.bytebuddy.utility.dispatcher.JavaDispatcher;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.ClassRule;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.amqp.rabbit.connection.ConnectionFactory;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
-import org.testcontainers.containers.RabbitMQContainer;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -37,11 +28,6 @@ import static com.desafio.boleto.helpers.BoletoHelper.getBoletoRequestError;
 import static com.desafio.boleto.helpers.BoletoHelper.getPagamentoRequest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.when;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")

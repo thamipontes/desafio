@@ -7,8 +7,7 @@ public class ConverteData {
 
     public static LocalDate converterData(String data){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        LocalDate dataFormatada = LocalDate.parse(data, formatter);
-        return dataFormatada;
+        return LocalDate.parse(data, formatter);
     }
 
     public static String converterDataAtual(){

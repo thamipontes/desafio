@@ -1,6 +1,5 @@
 package com.desafio.boleto.controllers;
 
-import com.desafio.boleto.controllers.BoletoController;
 import com.desafio.boleto.dtos.BoletoRequest;
 import com.desafio.boleto.services.BoletoService;
 import org.junit.jupiter.api.Test;
