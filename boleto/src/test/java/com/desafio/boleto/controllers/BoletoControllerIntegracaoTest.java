@@ -53,10 +53,13 @@ class BoletoControllerIntegracaoTest {
     @MockBean
     RabbitTemplate rabbitTemplate;
 
+    public static String baseUrl;
+
     @BeforeEach
     public void setUp() throws IOException {
         mockWebServer = new MockWebServer();
         mockWebServer.start(8081);
+        baseUrl = mockWebServer.url("/").toString();
     }
 
     @AfterEach
@@ -77,7 +80,7 @@ class BoletoControllerIntegracaoTest {
         String json = objectMapper.writeValueAsString(getBoletoRequest());
 
         ResultActions result = mockMvc.perform(MockMvcRequestBuilders
-                .post("/boletos")
+                .post(baseUrl + "/boletos")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json));
 
@@ -105,12 +108,12 @@ class BoletoControllerIntegracaoTest {
         String json = objectMapper.writeValueAsString(getBoletoRequest());
 
         mockMvc.perform(MockMvcRequestBuilders
-                .post("/boletos")
+                .post(baseUrl + "/boletos")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json));
 
         ResultActions result = mockMvc.perform(MockMvcRequestBuilders
-                .get("/boletos")
+                .get(baseUrl + "/boletos")
                 .param("uuidAssociado", "052a0588-7fa3-4324-8877-734c1b187564")
                 .contentType(MediaType.APPLICATION_JSON));
 
@@ -137,7 +140,7 @@ class BoletoControllerIntegracaoTest {
         String json = objectMapper.writeValueAsString(getBoletoRequest());
 
         ResultActions resultPost = mockMvc.perform(MockMvcRequestBuilders
-                .post("/boletos")
+                .post(baseUrl + "/boletos")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(json));
 
@@ -148,7 +151,7 @@ class BoletoControllerIntegracaoTest {
                 boletoResponse.getValor(), boletoResponse.getDocumentoPagador()));
 
         ResultActions result = mockMvc.perform(MockMvcRequestBuilders
-                .post("/boletos/pagamento")
+                .post(baseUrl+ "/boletos/pagamento")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonPagamento));
 

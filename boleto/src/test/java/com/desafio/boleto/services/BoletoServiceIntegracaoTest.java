@@ -77,7 +77,9 @@ public class BoletoServiceIntegracaoTest {
 
         BoletoResponse responseBoleto = boletoService.criarBoleto(getBoletoRequest());
 
-        assertEquals("Nome do Pagador", responseBoleto.getNomePagador());
+        assertThat(responseBoleto).extracting(BoletoResponse::getNomePagador, BoletoResponse::getSituacaoBoleto,
+                        BoletoResponse::getDocumentoPagador, BoletoResponse::getValor)
+                .contains("Nome do Pagador", ESituacaoBoleto.NAO_PAGO, "91468816039", 1000.0f);
     }
 
     @Test
