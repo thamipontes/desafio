@@ -14,8 +14,8 @@ import java.nio.file.Path;
 @Component
 @Log4j2
 public class ArquivoListener {
-    @RabbitListener(queues = "boletos.v1.boleto-pago")
-    public void onBoletoPago(BoletoResponse boletoResponse) throws IOException {
+    @RabbitListener(queues = "${rabbitmq.queue.name}")
+    public void onBoletoCriado(BoletoResponse boletoResponse) throws IOException {
         gerarArquivo(boletoResponse);
     }
 

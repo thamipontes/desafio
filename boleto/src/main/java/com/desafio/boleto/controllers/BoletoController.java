@@ -41,6 +41,7 @@ public class BoletoController {
     @PostMapping
     public ResponseEntity<BoletoResponse> criarBoleto(@RequestBody BoletoRequest boletoRequest){
         BoletoResponse response = boletoService.criarBoleto(boletoRequest);
+        rabbitTemplate.convertAndSend("${rabbitmq.routing.key}", response);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
@@ -65,7 +66,6 @@ public class BoletoController {
     @PostMapping("pagamento")
     public ResponseEntity<BoletoResponse> pagarBoleto(@RequestBody PagamentoBoletoRequest pagamentoBoletoRequest){
         BoletoResponse response = boletoService.pagarBoleto(pagamentoBoletoRequest);
-        rabbitTemplate.convertAndSend("boletos.v1.boleto-pago", response);
         return ResponseEntity.ok(response);
     }
 
