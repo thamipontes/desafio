@@ -75,6 +75,7 @@ Com o Sonarqube você poderá ver a qualidade do código e as métricas de cada 
 - Faça o login com o usuário e senha abaixo:
   - Usuário: admin
   - Senha: admin
+- Espere um pouco e clique no projeto DESAFIO e veja as métricas
 
 
 # Rabbitmq
